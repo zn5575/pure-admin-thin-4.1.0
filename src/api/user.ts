@@ -28,12 +28,24 @@ export type RefreshTokenResult = {
   };
 };
 
+export type GetUserResult = {
+  id: number;
+  username: string;
+};
+
 /** 登录 */
 export const getLogin = (data?: object) => {
-  return http.request<UserResult>("post", "/login", { data });
+  return http.request<UserResult>("post", "/api/login", { data });
 };
 
 /** 刷新token */
 export const refreshTokenApi = (data?: object) => {
-  return http.request<RefreshTokenResult>("post", "/refreshToken", { data });
+  return http.request<RefreshTokenResult>("post", "/api/refreshToken", {
+    data
+  });
+};
+
+/** 获取用户信息 */
+export const getUser = () => {
+  return http.request<GetUserResult>("get", "/api/users/me");
 };
